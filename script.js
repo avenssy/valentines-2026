@@ -5,7 +5,11 @@ const gameSection = document.getElementById('game-section');
 const proposalSection = document.getElementById('proposal-section');
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
+const clickBtn = document.getElementById('click-btn');
 const celebration = document.getElementById('celebration');
+const loveLetter = document.getElementById('love-letter');
+const proposalText = document.getElementById('proposal-text');
+
 
 // Game State
 let score = 0;
@@ -210,35 +214,13 @@ yesBtn.addEventListener('click', () => {
     celebration.classList.remove('hidden');
     yesBtn.style.display = 'none';
     noBtn.style.display = 'none';
-    startConfetti();
 });
 
-function startConfetti() {
-    const colors = ['#ff4757', '#2ed573', '#1e90ff', '#ffa502'];
-
-    for (let i = 0; i < 100; i++) {
-        const conf = document.createElement('div');
-        conf.classList.add('confetti');
-
-        // Random properties
-        const left = Math.random() * 100;
-        const animDuration = Math.random() * 3 + 2;
-        const delay = Math.random() * 2;
-
-        conf.style.left = left + 'vw';
-        conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        conf.style.animation = `fall ${animDuration}s linear ${delay}s forwards`;
-
-        // Random shape
-        if (Math.random() > 0.5) {
-            conf.style.borderRadius = '50%';
-        }
-
-        document.body.appendChild(conf);
-
-        // Cleanup after animation
-        setTimeout(() => {
-            conf.remove();
-        }, (animDuration + delay) * 1000);
-    }
-}
+clickBtn.addEventListener('click', () => {
+    proposalSection.classList.add('hidden');
+    proposalText.classList.add('hidden');
+    celebration.classList.add('hidden');
+    loveLetter.classList.remove('hidden');
+    yesBtn.style.display = 'none';
+    noBtn.style.display = 'none';
+});
